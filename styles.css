@@ -448,7 +448,7 @@ html.lenis, html.lenis body { height: auto; }
 .step-number { font-size: 104px; line-height: 104px; letter-spacing: -0.05em; color: var(--text-muted); transition: color var(--hover-soft); }
 .step-body { display: flex; flex-direction: column; gap: 12px; }
 .step-illustration { display: block; width: 96px; height: 96px; margin-bottom: 12px; }
-.step-illustration img { width: 96px; height: 96px; object-fit: cover; mix-blend-mode: darken; transition: transform var(--hover-soft); }
+.step-illustration img { width: 96px; height: 96px; object-fit: cover; transition: transform var(--hover-soft); }
 .step-body p { font-size: 16px; line-height: 21px; color: var(--text-2); }
 
 /* Airline DNA ------------------------------------------------------------ */
@@ -781,7 +781,7 @@ html.lenis, html.lenis body { height: auto; }
 .value-card .index { font-size: 14px; line-height: 18px; letter-spacing: -0.01em; color: var(--text-2); }
 .value-body { display: flex; flex-direction: column; gap: 16px; }
 .value-illustration { display: block; width: 96px; height: 96px; }
-.value-illustration img { width: 96px; height: 96px; object-fit: cover; mix-blend-mode: darken; transition: transform var(--hover-soft); }
+.value-illustration img { width: 96px; height: 96px; object-fit: cover; transition: transform var(--hover-soft); }
 .value-body h3 { font-weight: 400; font-size: 36px; line-height: 40px; letter-spacing: -0.04em; color: var(--text); }
 .value-body p { font-size: 18px; line-height: 23px; color: var(--text-2); }
 
