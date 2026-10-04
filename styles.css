@@ -594,16 +594,55 @@ html.lenis, html.lenis body { height: auto; }
 .quick-stat dd.accent { color: var(--secondary); }
 
 /* Flight plan */
-.phases-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 80px; }
-.phase-card { display: flex; flex-direction: column; gap: 40px; padding: 0 28px 8px; border-right: 1px solid var(--line); }
-.phase-card:first-child { padding-left: 0; }
-.phase-card:last-child { padding-right: 0; border-right: 0; }
-.route { display: block; height: 14px; }
-.route.draw-line::after { top: 50%; }
-.phase-head { display: flex; justify-content: space-between; align-items: center; }
-.phase-head .hours { font-size: 12px; line-height: 16px; letter-spacing: 0.06em; color: var(--text-2); }
-.phase-body { display: flex; flex-direction: column; gap: 12px; }
-.phase-body p { font-size: 16px; line-height: 21px; color: var(--text-2); }
+/* Flight plan: photo phase cards (324 × 650) */
+.phases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 80px; }
+.phase-card { position: relative; height: 650px; overflow: hidden; border-radius: 2px; background: #0b0d14; color: var(--white); isolation: isolate; }
+.phase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--hover-fast), scale 1200ms var(--ease-image); }
+.phase-card::before { /* top shade: black 50% → clear at half height */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
+}
+.phase-glow { /* blurred 20% black ellipse behind the header row (Figma Ellipse 4/5) */
+  position: absolute; z-index: 1; top: -190px; left: -190px; width: calc(100% + 380px); height: 658px; max-width: none; pointer-events: none;
+}
+.phase-top { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 20px; padding: 12px 24px 0; }
+.phase-top::after { content: ""; position: absolute; left: 24px; right: 24px; bottom: 0; height: 1px; background: var(--white); }
+.phase-code { padding-right: 20px; border-right: 1px solid var(--white); font-weight: 500; font-size: 56px; line-height: 72px; letter-spacing: 0; }
+.phase-duration { display: flex; flex-direction: column; font-size: 20px; line-height: 32px; letter-spacing: 0; white-space: nowrap; }
+.phase-duration small { font-size: 12px; line-height: 20px; }
+.phase-bottom {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 12px;
+  padding: 56px 24px 24px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px); mask-image: linear-gradient(180deg, transparent 0, #000 56px);
+}
+.phase-bar { display: block; width: 80px; height: 4px; background: var(--secondary); transition: width var(--card-reveal); }
+.phase-bottom h3 { font-weight: 500; font-size: 24px; line-height: 29px; letter-spacing: -0.02em; white-space: nowrap; }
+.phase-bottom p {
+  font-size: 16px; line-height: 21px; opacity: 0.8;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Blueprint grid behind the navy heroes: major lines every 107.59px, minor every 21.52px,
+   white at 10%, radial mask (full in the centre → 25% at the edges) */
+.has-grid { position: relative; isolation: isolate; }
+.has-grid::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 968px; z-index: -1; pointer-events: none; opacity: 0.1;
+  background-image:
+    linear-gradient(90deg, #f2f2f2 1.55px, transparent 1.55px),
+    linear-gradient(180deg, #f2f2f2 1.55px, transparent 1.55px),
+    linear-gradient(90deg, #f2f2f2 0.78px, transparent 0.78px),
+    linear-gradient(180deg, #f2f2f2 0.78px, transparent 0.78px);
+  background-size: 107.59px 107.59px, 107.59px 107.59px, 21.52px 21.52px, 21.52px 21.52px;
+  -webkit-mask-image: radial-gradient(ellipse 100% 76% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+          mask-image: radial-gradient(ellipse 100% 76% at 50% 50%, #000 0%, rgba(0, 0, 0, 0.25) 100%);
+}
+/* Career hero: the grid fades into navy from y≈461 down */
+.grid-fade::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 461px; bottom: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(18, 26, 71, 0) 0%, var(--navy) 100%);
+}
 .syllabus-total { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 20px 24px; border-radius: 56px; background: var(--tint); }
 .syllabus-total p { font-size: 18px; line-height: 23px; color: var(--text); }
 .syllabus-total .total { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
@@ -761,6 +800,9 @@ html.lenis, html.lenis body { height: auto; }
   .checklist li:hover img { transform: scale(1.2); }
 
   .aircraft-card:hover .aircraft-media img { transform: scale(1.05); }
+  .phase-card:hover .phase-photo { transform: scale(1.05); }
+  .phase-card:hover .phase-bar { width: 120px; }
+  .phase-card:hover .phase-bottom p { -webkit-line-clamp: 5; opacity: 1; }
   .pricing-row:hover { background: var(--off-white); padding-inline: 12px; }
   .financing-features li:hover img { transform: scale(1.2); }
 
@@ -880,9 +922,10 @@ html.lenis, html.lenis body { height: auto; }
   .financing-info { width: 420px; }
 }
 @media (max-width: 1180px) {
-  .phases-grid, .fleet-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
-  .phase-card:nth-child(2n), .aircraft-card:nth-child(2n) { padding-right: 0; border-right: 0; }
-  .phase-card:nth-child(2n+1), .aircraft-card:nth-child(2n+1) { padding-left: 0; }
+  .phases-grid { grid-template-columns: repeat(2, 1fr); }
+  .fleet-grid { grid-template-columns: repeat(2, 1fr); row-gap: 48px; }
+  .aircraft-card:nth-child(2n) { padding-right: 0; border-right: 0; }
+  .aircraft-card:nth-child(2n+1) { padding-left: 0; }
   .quick-stats { grid-template-columns: repeat(2, 1fr); row-gap: 32px; }
   .quick-stat:nth-child(3) { padding-left: 0; border-left: 0; }
   .pricing-split { flex-direction: column; align-items: stretch; }
@@ -903,7 +946,8 @@ html.lenis, html.lenis body { height: auto; }
   .quick-stat dd { font-size: 32px; line-height: 36px; }
   .quick-stat { padding: 20px 16px 0; }
   .phases-grid, .fleet-grid { grid-template-columns: 1fr; }
-  .phase-card, .aircraft-card { padding-inline: 0 !important; border-right: 0; }
+  .phase-card { height: 520px; }
+  .aircraft-card { padding-inline: 0 !important; border-right: 0; }
   .cost-card { padding: 24px; }
   .total-row .total { font-size: 40px; line-height: 40px; }
   .pricing-row dt { font-size: 15px; }
