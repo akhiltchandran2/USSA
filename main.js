@@ -199,6 +199,17 @@
   // hero glass card counts up as it lands (§7: card enters at 0.6s)
   setTimeout(() => countUp(document.querySelector('.glass-card [data-count]')), reduceMotion ? 0 : 1300);
 
+  /* Location cards: hovered/focused card expands; first card is active by default */
+  const locGrid = document.querySelector('.locations-grid');
+  const locCards = [...locGrid.querySelectorAll('.location-card')];
+  const activateCard = (card) => locCards.forEach((c) => c.classList.toggle('is-active', c === card));
+  locCards.forEach((card) => {
+    card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') activateCard(card); });
+    card.addEventListener('focus', () => activateCard(card));
+  });
+  locGrid.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') activateCard(locCards[0]); });
+  locGrid.addEventListener('focusout', (e) => { if (!locGrid.contains(e.relatedTarget)) activateCard(locCards[0]); });
+
   /* Pre-footer reveal window: follows the pointer across the aircraft ------- */
   const visual = document.querySelector('.cta-visual');
   const WINDOW_W = 15.68; // window width, % of visual
