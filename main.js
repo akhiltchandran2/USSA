@@ -217,24 +217,25 @@
     locGrid.addEventListener('focusout', (e) => { if (!locGrid.contains(e.relatedTarget)) activateCard(locCards[0]); });
   });
 
-  /* Flight-plan cards: description grows from 2 lines to full height smoothly */
-  document.querySelectorAll('.phase-card').forEach((card) => {
+  /* Flight-plan cards: hide lines 3+ at rest by sliding the text panel down by
+     their height; hover slides it back up (pure transform, no layout jitter) */
+  const phaseCards = [...document.querySelectorAll('.phase-card')];
+  const measurePhases = () => phaseCards.forEach((card) => {
     const text = card.querySelector('.phase-bottom p');
-    let reclamp = 0;
-    card.addEventListener('pointerenter', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      clearTimeout(reclamp);
-      card.classList.add('is-unclamped');
-      text.style.setProperty('--full', `${text.scrollHeight}px`);
-      void text.offsetHeight; // commit the 2-line height so max-height animates from it
-      card.classList.add('is-open');
-    });
-    card.addEventListener('pointerleave', () => {
-      card.classList.remove('is-open');
-      // restore the "…" only once the collapse has finished (700ms transition)
-      reclamp = setTimeout(() => card.classList.remove('is-unclamped'), 720);
-    });
+    const lineH = parseFloat(getComputedStyle(text).lineHeight) || 21;
+    card.style.setProperty('--extra', `${Math.max(0, text.scrollHeight - lineH * 2)}px`);
   });
+  if (phaseCards.length) {
+    measurePhases();
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(measurePhases);
+    window.addEventListener('resize', measurePhases);
+    phaseCards.forEach((card) => {
+      card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') card.classList.add('is-open'); });
+      card.addEventListener('pointerleave', () => card.classList.remove('is-open'));
+      card.addEventListener('focusin', () => card.classList.add('is-open'));
+      card.addEventListener('focusout', () => card.classList.remove('is-open'));
+    });
+  }
 
   /* Pre-footer reveal window: follows the pointer across the aircraft ------- */
   const visual = document.querySelector('.cta-visual');
