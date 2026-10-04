@@ -204,9 +204,10 @@
   const heroCount = document.querySelector('.glass-card [data-count]');
   if (heroCount) setTimeout(() => countUp(heroCount), reduceMotion ? 0 : 1300);
 
-  /* Location cards: hovered/focused card expands; first card is active by default */
-  document.querySelectorAll('.locations-grid').forEach((locGrid) => {
-    const locCards = [...locGrid.querySelectorAll('.location-card')];
+  /* Expanding card rows (locations, accreditation): hovered/focused card
+     widens; the first card is active by default */
+  document.querySelectorAll('.locations-grid, .accred-grid').forEach((locGrid) => {
+    const locCards = [...locGrid.children];
     const activateCard = (card) => locCards.forEach((c) => c.classList.toggle('is-active', c === card));
     locCards.forEach((card) => {
       card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') activateCard(card); });
