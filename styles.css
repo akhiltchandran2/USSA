@@ -597,7 +597,7 @@ html.lenis, html.lenis body { height: auto; }
 /* Flight plan: photo phase cards (324 × 650) */
 .phases-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 80px; }
 .phase-card { position: relative; height: 650px; overflow: hidden; border-radius: 2px; background: #0b0d14; color: var(--white); isolation: isolate; }
-.phase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform var(--hover-fast), scale 1200ms var(--ease-image); }
+.phase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease-appear), scale 1200ms var(--ease-image); will-change: transform; }
 .phase-card::before { /* top shade: black 50% → clear at half height */
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
@@ -617,12 +617,16 @@ html.lenis, html.lenis body { height: auto; }
   -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px); mask-image: linear-gradient(180deg, transparent 0, #000 56px);
 }
-.phase-bar { display: block; width: 80px; height: 4px; background: var(--secondary); transition: width var(--card-reveal); }
+.phase-bar { display: block; width: 80px; height: 4px; background: var(--secondary); transform-origin: left; transition: transform 700ms var(--ease-appear); }
 .phase-bottom h3 { font-weight: 500; font-size: 24px; line-height: 29px; letter-spacing: -0.02em; white-space: nowrap; }
 .phase-bottom p {
   font-size: 16px; line-height: 21px; opacity: 0.8;
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  max-height: 42px; /* 2 lines; expands smoothly on hover via --full (set in main.js) */
+  transition: max-height 700ms var(--ease-appear), opacity 700ms var(--ease-appear);
 }
+.phase-card.is-unclamped .phase-bottom p { display: block; -webkit-line-clamp: unset; }
+.phase-card.is-open .phase-bottom p { max-height: var(--full, 126px); opacity: 1; }
 
 /* Blueprint grid behind the navy heroes: major lines every 107.59px, minor every 21.52px,
    white at 10%, radial mask (full in the centre → 25% at the edges) */
@@ -801,8 +805,7 @@ html.lenis, html.lenis body { height: auto; }
 
   .aircraft-card:hover .aircraft-media img { transform: scale(1.05); }
   .phase-card:hover .phase-photo { transform: scale(1.05); }
-  .phase-card:hover .phase-bar { width: 120px; }
-  .phase-card:hover .phase-bottom p { -webkit-line-clamp: 5; opacity: 1; }
+  .phase-card:hover .phase-bar { transform: scaleX(1.5); }
   .pricing-row:hover { background: var(--off-white); padding-inline: 12px; }
   .financing-features li:hover img { transform: scale(1.2); }
 

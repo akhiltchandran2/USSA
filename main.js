@@ -217,6 +217,25 @@
     locGrid.addEventListener('focusout', (e) => { if (!locGrid.contains(e.relatedTarget)) activateCard(locCards[0]); });
   });
 
+  /* Flight-plan cards: description grows from 2 lines to full height smoothly */
+  document.querySelectorAll('.phase-card').forEach((card) => {
+    const text = card.querySelector('.phase-bottom p');
+    let reclamp = 0;
+    card.addEventListener('pointerenter', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      clearTimeout(reclamp);
+      card.classList.add('is-unclamped');
+      text.style.setProperty('--full', `${text.scrollHeight}px`);
+      void text.offsetHeight; // commit the 2-line height so max-height animates from it
+      card.classList.add('is-open');
+    });
+    card.addEventListener('pointerleave', () => {
+      card.classList.remove('is-open');
+      // restore the "…" only once the collapse has finished (700ms transition)
+      reclamp = setTimeout(() => card.classList.remove('is-unclamped'), 720);
+    });
+  });
+
   /* Pre-footer reveal window: follows the pointer across the aircraft ------- */
   const visual = document.querySelector('.cta-visual');
   if (visual) {
