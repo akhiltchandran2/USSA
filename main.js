@@ -110,32 +110,35 @@
   };
 
   /* §7 hero parallax (90% speed) + §6.5 DNA image parallax + §6.10 CTA scale */
+  // Each page has a subset of these; missing ones are skipped.
   const bannerPhoto = document.querySelector('.banner-photo');
   const banner = document.querySelector('.hero-banner');
-  const dnaFrame = document.querySelector('.dna-image');
-  const dnaImg = dnaFrame.querySelector('img');
+  const parallaxFrames = [...document.querySelectorAll('.parallax-frame')];
   const cta = document.getElementById('cta');
-  const ctaHeading = cta.querySelector('h2');
+  const ctaHeading = cta && cta.querySelector('h2');
   let ctaScale = 2, ctaTarget = 2;
 
   const updateScrollLinked = () => {
     const vh = window.innerHeight;
-    if (!reduceMotion) {
+    if (reduceMotion) { ctaTarget = 1; return; }
+    if (banner) {
       const b = banner.getBoundingClientRect();
       if (b.bottom > 0 && b.top < vh) {
         const maxShift = b.height * 0.06; // image is 112% tall
         bannerPhoto.style.setProperty('--parallax', `${clamp(window.scrollY * 0.1, 0, maxShift).toFixed(1)}px`);
       }
-      const d = dnaFrame.getBoundingClientRect();
+    }
+    for (const frame of parallaxFrames) {
+      const d = frame.getBoundingClientRect();
       if (d.bottom > 0 && d.top < vh) {
         const maxShift = d.height * 0.08; // image is 116% tall
-        dnaImg.style.setProperty('--parallax', `${clamp((d.top / vh) * 20 * -5, -maxShift, maxShift).toFixed(1)}px`);
+        frame.querySelector('img').style.setProperty('--parallax', `${clamp((d.top / vh) * 20 * -5, -maxShift, maxShift).toFixed(1)}px`);
       }
+    }
+    if (cta) {
       // scale 2 → 1 as the CTA section goes from "start end" to "start start"
       const c = cta.getBoundingClientRect();
       ctaTarget = 2 - clamp((vh - c.top) / vh, 0, 1);
-    } else {
-      ctaTarget = 1;
     }
   };
   // spring-like smoothing for the CTA scale (stiffness 500 / damping 60 feel)
@@ -145,7 +148,7 @@
     ctaHeading.style.setProperty('--cta-scale', ctaScale.toFixed(4));
     requestAnimationFrame(smoothCta);
   };
-  requestAnimationFrame(smoothCta);
+  if (ctaHeading) requestAnimationFrame(smoothCta);
 
   let ticking = false;
   const onScroll = () => {
@@ -168,9 +171,10 @@
   /* §6.7 Count-up numbers (spring bounce 0, duration 1) -------------------- */
   const countUp = (el, delay = 0) => {
     const target = Number(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
     const suffix = el.dataset.suffix || '';
     const comma = el.hasAttribute('data-comma');
-    const fmt = (n) => (comma ? n.toLocaleString('en-US') : String(n)) + suffix;
+    const fmt = (n) => prefix + (comma ? n.toLocaleString('en-US') : String(n)) + suffix;
     if (reduceMotion) { el.textContent = fmt(target); return; }
     el.textContent = fmt(0);
     setTimeout(() => {
@@ -190,52 +194,56 @@
       if (!entry.isIntersecting) continue;
       const el = entry.target;
       el.classList.add('in-view');
-      if (el.classList.contains('stats-grid')) el.querySelectorAll('[data-count]').forEach((n) => countUp(n, 400));
+      if (el.matches('.stats-grid, .count-group')) el.querySelectorAll('[data-count]').forEach((n) => countUp(n, 400));
       io.unobserve(el);
     }
   }, { threshold: 0.5 });
-  document.querySelectorAll('.reveal-up, .heading-in, .stats-grid, .draw-line').forEach((el) => io.observe(el));
+  document.querySelectorAll('.reveal-up, .heading-in, .stats-grid, .count-group, .draw-line, .slide-in').forEach((el) => io.observe(el));
 
   // hero glass card counts up as it lands (§7: card enters at 0.6s)
-  setTimeout(() => countUp(document.querySelector('.glass-card [data-count]')), reduceMotion ? 0 : 1300);
+  const heroCount = document.querySelector('.glass-card [data-count]');
+  if (heroCount) setTimeout(() => countUp(heroCount), reduceMotion ? 0 : 1300);
 
   /* Location cards: hovered/focused card expands; first card is active by default */
-  const locGrid = document.querySelector('.locations-grid');
-  const locCards = [...locGrid.querySelectorAll('.location-card')];
-  const activateCard = (card) => locCards.forEach((c) => c.classList.toggle('is-active', c === card));
-  locCards.forEach((card) => {
-    card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') activateCard(card); });
-    card.addEventListener('focus', () => activateCard(card));
+  document.querySelectorAll('.locations-grid').forEach((locGrid) => {
+    const locCards = [...locGrid.querySelectorAll('.location-card')];
+    const activateCard = (card) => locCards.forEach((c) => c.classList.toggle('is-active', c === card));
+    locCards.forEach((card) => {
+      card.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') activateCard(card); });
+      card.addEventListener('focus', () => activateCard(card));
+    });
+    locGrid.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') activateCard(locCards[0]); });
+    locGrid.addEventListener('focusout', (e) => { if (!locGrid.contains(e.relatedTarget)) activateCard(locCards[0]); });
   });
-  locGrid.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') activateCard(locCards[0]); });
-  locGrid.addEventListener('focusout', (e) => { if (!locGrid.contains(e.relatedTarget)) activateCard(locCards[0]); });
 
   /* Pre-footer reveal window: follows the pointer across the aircraft ------- */
   const visual = document.querySelector('.cta-visual');
-  const WINDOW_W = 15.68; // window width, % of visual
-  const HOME_X = 46.2;    // Figma position
-  let targetX = HOME_X, currentX = HOME_X, rafId = 0;
-  const animateWindow = () => {
-    currentX += (targetX - currentX) * 0.12;
-    visual.style.setProperty('--wx', currentX.toFixed(3));
-    rafId = Math.abs(targetX - currentX) > 0.02 ? requestAnimationFrame(animateWindow) : 0;
-  };
-  const moveTo = (x) => { targetX = clamp(x, 0, 100 - WINDOW_W); if (!rafId) rafId = requestAnimationFrame(animateWindow); };
-  const pointerX = (e) => {
-    const r = visual.getBoundingClientRect();
-    return ((e.clientX - r.left) / r.width) * 100 - WINDOW_W / 2;
-  };
-  visual.addEventListener('pointermove', (e) => moveTo(pointerX(e)));
-  visual.addEventListener('pointerleave', () => moveTo(HOME_X));
-  visual.addEventListener('pointerdown', (e) => moveTo(pointerX(e)));
-  if (!reduceMotion) {
-    const sweep = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      sweep.disconnect();
-      currentX = 8; visual.style.setProperty('--wx', currentX);
-      moveTo(HOME_X);
-    }, { threshold: 0.6 });
-    sweep.observe(visual);
+  if (visual) {
+    const WINDOW_W = 15.68; // window width, % of visual
+    const HOME_X = 46.2;    // Figma position
+    let targetX = HOME_X, currentX = HOME_X, rafId = 0;
+    const animateWindow = () => {
+      currentX += (targetX - currentX) * 0.12;
+      visual.style.setProperty('--wx', currentX.toFixed(3));
+      rafId = Math.abs(targetX - currentX) > 0.02 ? requestAnimationFrame(animateWindow) : 0;
+    };
+    const moveTo = (x) => { targetX = clamp(x, 0, 100 - WINDOW_W); if (!rafId) rafId = requestAnimationFrame(animateWindow); };
+    const pointerX = (e) => {
+      const r = visual.getBoundingClientRect();
+      return ((e.clientX - r.left) / r.width) * 100 - WINDOW_W / 2;
+    };
+    visual.addEventListener('pointermove', (e) => moveTo(pointerX(e)));
+    visual.addEventListener('pointerleave', () => moveTo(HOME_X));
+    visual.addEventListener('pointerdown', (e) => moveTo(pointerX(e)));
+    if (!reduceMotion) {
+      const sweep = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        sweep.disconnect();
+        currentX = 8; visual.style.setProperty('--wx', currentX);
+        moveTo(HOME_X);
+      }, { threshold: 0.6 });
+      sweep.observe(visual);
+    }
   }
 
   onScroll();
