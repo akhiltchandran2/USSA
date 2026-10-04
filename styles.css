@@ -741,7 +741,7 @@ html.lenis, html.lenis body { height: auto; }
 /* Accreditation: expanding image cards (450 active / 286 rest) */
 .accred-grid { display: flex; gap: 12px; height: 450px; }
 .accred-card {
-  position: relative; flex: 286 1 0; min-width: 0; overflow: hidden; border-radius: 8px; background: #000; outline-offset: 4px;
+  position: relative; flex: 286 1 0; min-width: 0; overflow: hidden; border-radius: 2px; background: #000; outline-offset: 4px;
   transition: flex-grow var(--card-reveal),
     opacity 1200ms var(--ease-appear) calc(200ms + var(--d, 0ms)), transform 1200ms var(--ease-appear) calc(200ms + var(--d, 0ms));
 }
