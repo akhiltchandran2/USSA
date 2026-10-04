@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>US Aviation Academy — Pilot. Mechanic. Dispatcher.</title>
+  <meta name="description" content="US Aviation Academy trains professional pilots, A&amp;P technicians, and aircraft dispatchers for leading commercial airlines.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=Rethink+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Full header (top of page) -->
+  <header class="site-header" id="top">
+    <div class="utility-nav">
+      <nav class="utility-left" aria-label="Quick links">
+        <a href="#">Current Students</a>
+        <a href="#">Pilotbase Portal</a>
+        <a href="#">Alumni Network</a>
+      </nav>
+      <nav class="utility-right" aria-label="Visitor links">
+        <a href="#">Visit Campus</a>
+        <a href="#">Request Info</a>
+      </nav>
+    </div>
+
+    <div class="main-nav">
+      <a class="logo" href="#top" aria-label="US Aviation Academy home">
+        <img src="assets/logo.svg" width="132" height="48" alt="US Aviation Academy">
+      </a>
+      <nav class="nav-menu" aria-label="Primary">
+        <a href="#programs">Academics</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#locations">Locations</a>
+        <a href="#about">About USAA</a>
+        <a href="#news">Campus Life</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="search-bar">
+          <span class="icon icon-search" aria-hidden="true"></span>
+          <span class="sr-only">Search</span>
+          <input type="search" placeholder="Search programs, campuses…">
+        </label>
+        <a class="btn btn-dark" href="#admissions">Apply Now <span class="arrow" aria-hidden="true"></span></a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </div>
+    </div>
+
+    <nav class="sub-nav" aria-label="Secondary">
+      <a href="#programs">Degree Pathways</a>
+      <a href="#admissions">Tuition &amp; Costs</a>
+      <a href="#admissions">Financial Aid</a>
+      <a href="#admissions">VA Benefits</a>
+      <a href="#cta">Discovery Flight</a>
+      <a href="#locations">Campus Tour</a>
+      <a href="#news">News</a>
+    </nav>
+  </header>
+
+  <!-- Floating sticky header (appears on scroll) -->
+  <div class="sticky-nav" aria-hidden="true">
+    <div class="sticky-pill">
+      <a class="logo" href="#top" tabindex="-1" aria-label="US Aviation Academy home">
+        <img src="assets/logo-sticky.svg" width="99" height="36" alt="">
+      </a>
+      <nav class="nav-menu" aria-label="Primary (sticky)">
+        <a href="#programs" tabindex="-1">Academics</a>
+        <a href="#admissions" tabindex="-1">Admissions</a>
+        <a href="#locations" tabindex="-1">Locations</a>
+        <a href="#about" tabindex="-1">About USAA</a>
+        <a href="#news" tabindex="-1">Campus Life</a>
+      </nav>
+      <div class="nav-actions">
+        <form class="pill-search" role="search" onsubmit="return false">
+          <input type="search" placeholder="Search programs, campuses…" tabindex="-1" aria-label="Search">
+          <button type="button" class="pill-search-btn" tabindex="-1" aria-label="Open search"><span class="icon icon-search" aria-hidden="true"></span></button>
+        </form>
+        <a class="btn btn-ink" href="#admissions" tabindex="-1">Apply Now <span class="arrow" aria-hidden="true"></span></a>
+        <button class="menu-toggle" type="button" tabindex="-1" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <nav aria-label="Mobile">
+      <a href="#programs">Academics</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#locations">Locations</a>
+      <a href="#about">About USAA</a>
+      <a href="#news">Campus Life</a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <a class="btn btn-light" href="#admissions">Apply Now <span class="arrow" aria-hidden="true"></span></a>
+      <a class="btn btn-outline-dark" href="#">Request Info <span class="arrow" aria-hidden="true"></span></a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero section-dark">
+      <div class="hero-content wrap">
+        <div class="tagline-stack">
+          <p class="eyebrow eyebrow-yellow reveal-up" style="--d:0ms"><span class="bullet"></span>Nation's Largest Part 141 Flight Academy</p>
+          <h1 class="display-xl">
+            <span class="line"><span style="--d:80ms">Pilot. Mechanic.</span></span>
+            <span class="line"><span style="--d:160ms">Dispatcher.</span></span>
+            <span class="line accent"><span style="--d:240ms">One Academy.</span></span>
+          </h1>
+        </div>
+        <div class="hero-lead reveal-up" style="--d:360ms">
+          <p>US Aviation Academy is a premier collegiate-grade institute training the next generation of aerospace professionals. Across multiple national bases, our graduates go directly to major airline cockpits, maintenance bays, and operations centers.</p>
+          <div class="btn-row">
+            <a class="btn btn-light" href="#programs">Explore Programs <span class="arrow" aria-hidden="true"></span></a>
+            <a class="btn btn-outline-dark" href="#admissions">Request Admissions Info <span class="arrow" aria-hidden="true"></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="banner-wrap">
+        <figure class="hero-banner">
+          <img class="banner-photo" src="assets/hero-banner.png" alt="US Aviation Academy pilots, technicians and dispatchers in front of a regional jet">
+          <img class="banner-overlay" src="assets/hero-overlay.png" alt="" aria-hidden="true">
+          <div class="glass-card">
+            <div class="stat-row">
+              <span class="stat-value" data-count="93" data-suffix="%">93%</span>
+              <span class="stat-label">Checkride<br>pass rate</span>
+            </div>
+            <span class="divider"></span>
+            <p>Airline-aligned SOPs from your very first lesson.</p>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Programs -->
+    <section class="section programs" id="programs">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow"><span class="bullet bullet-red"></span>Professional Pathways</p>
+          <h2 class="display-lg scroll-words">Three careers. One standard.</h2>
+        </div>
+        <div class="programs-grid">
+          <article class="program-card reveal-up" style="--d:0ms">
+            <a class="program-media" href="#" aria-label="Career Pilot Track">
+              <img src="assets/program-pilot.png" alt="Smiling pilot leaning out of a training aircraft cockpit" style="height:145.82%;left:-26.73%;top:-22.01%;width:133.18%">
+            </a>
+            <div class="program-meta">
+              <span class="index">01</span>
+              <h3 class="h6">Career Pilot Track</h3>
+              <p>Go from zero flight hours to a commercial multi-engine flight instructor. Fast-track Part 141 syllabus with airline-aligned SOPs.</p>
+            </div>
+            <a class="btn btn-outline" href="#">View Syllabus &amp; Cost <span class="arrow" aria-hidden="true"></span></a>
+          </article>
+          <article class="program-card reveal-up" style="--d:120ms">
+            <a class="program-media" href="#" aria-label="Aviation Maintenance">
+              <img src="assets/program-maintenance.png" alt="Aviation maintenance technician beside an aircraft engine" style="height:148.14%;left:0.15%;top:-19.49%;width:166.36%">
+            </a>
+            <div class="program-meta">
+              <span class="index">02</span>
+              <h3 class="h6">Aviation Maintenance</h3>
+              <p>Earn your airframe &amp; powerplant technician certificate under FAA Part 147, in our heavy maintenance bays and across our fleet.</p>
+            </div>
+            <a class="btn btn-outline" href="#">View Syllabus &amp; Cost <span class="arrow" aria-hidden="true"></span></a>
+          </article>
+          <article class="program-card reveal-up" style="--d:240ms">
+            <a class="program-media" href="#" aria-label="Aircraft Dispatcher">
+              <img src="assets/program-dispatcher.png" alt="Aircraft dispatcher wearing a headset on the flight line" style="height:156.74%;left:-70.45%;top:-18.3%;width:170.52%">
+            </a>
+            <div class="program-meta">
+              <span class="index">03</span>
+              <h3 class="h6">Aircraft Dispatcher</h3>
+              <p>The nerve center of air carrier operations. Flight planning, meteorology, tracking, and safety in a realistic dispatch simulator.</p>
+            </div>
+            <a class="btn btn-outline" href="#">View Syllabus &amp; Cost <span class="arrow" aria-hidden="true"></span></a>
+          </article>
+        </div>
+        <div class="academic-strip reveal-up">
+          <div class="strip-left">
+            <span class="badge">DEGREE PATHWAY</span>
+            <p>Texas State University BAAS pathway lets you transfer up to 45 flight credits.</p>
+          </div>
+          <a class="btn btn-outline" href="#">Learn More About Degree Option <span class="arrow" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section section-dark stats" id="stats">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow eyebrow-yellow"><span class="bullet"></span>Operational Capacity</p>
+          <h2 class="display-lg scroll-words on-dark">The scale of one academy — built for airline-ready careers.</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-column"><span class="stat-top">Students</span><div class="value-block"><span class="value" data-count="1200" data-suffix="+" data-comma>1,200+</span><span class="bar"></span><span class="bar-fill" style="--h:200px"></span></div><span class="stat-caption">Active students</span></div>
+          <div class="stat-column"><span class="stat-top">Fleet</span><div class="value-block"><span class="value" data-count="200" data-suffix="+">200+</span><span class="bar"></span><span class="bar-fill" style="--h:160px"></span></div><span class="stat-caption">Aircraft fleet</span></div>
+          <div class="stat-column"><span class="stat-top">Bases</span><div class="value-block"><span class="value" data-count="8">8</span><span class="bar"></span><span class="bar-fill" style="--h:100px"></span></div><span class="stat-caption">Training bases</span></div>
+          <div class="stat-column"><span class="stat-top">Checkrides</span><div class="value-block"><span class="value accent" data-count="93" data-suffix="%">93%</span><span class="bar"></span><span class="bar-fill" style="--h:260px"></span></div><span class="stat-caption">Pass rate</span></div>
+          <div class="stat-column"><span class="stat-top">Partners</span><div class="value-block"><span class="value" data-count="40" data-suffix="+">40+</span><span class="bar"></span><span class="bar-fill" style="--h:140px"></span></div><span class="stat-caption">Airline partners</span></div>
+          <div class="stat-column"><span class="stat-top">Leadership</span><div class="value-block"><span class="value" data-count="60" data-suffix="+ Yrs">60+ Yrs</span><span class="bar"></span><span class="bar-fill" style="--h:220px"></span></div><span class="stat-caption">Combined experience</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Locations -->
+    <section class="section locations" id="locations">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow"><span class="bullet bullet-red"></span>National Training Network</p>
+          <h2 class="display-lg scroll-words">Train close to home. Or wherever the weather's best.</h2>
+        </div>
+        <div class="locations-grid">
+          <a class="location-card is-hq reveal-up" href="#" style="--d:0ms">
+            <span class="map"><img src="assets/map-denton.png" alt="" style="height:100%;left:0;top:0;width:100%;object-fit:cover"></span>
+            <span class="card-head-row"><span class="icao">KDTO</span><span class="chip"><img src="assets/dot-texas-blue.svg" width="14" height="14" alt="">TEXAS</span></span>
+            <span class="body"><span class="title">Denton (Academy HQ)</span><span class="desc">Primary flight tracks, dispatch simulators, and our FAA Part 147 maintenance technician school.</span></span>
+          </a>
+          <a class="location-card reveal-up" href="#" style="--d:100ms">
+            <span class="map"><img src="assets/map-austin.png" alt="" style="height:100%;left:-36.13%;top:0;width:172.27%"></span>
+            <span class="card-head-row"><span class="icao">KAUS</span><span class="chip"><img src="assets/dot-yellow.svg" width="16" height="16" alt="">TEXAS</span></span>
+            <span class="body"><span class="title">Austin Executive</span><span class="desc">Glass-cockpit Piper fleet with immediate proximity to Class C international airspace.</span></span>
+          </a>
+          <a class="location-card reveal-up" href="#" style="--d:200ms">
+            <span class="map"><img src="assets/map-fortworth.png" alt="" style="height:100%;left:-58.94%;top:0;width:172.27%"></span>
+            <span class="card-head-row"><span class="icao">KAFW</span><span class="chip"><img src="assets/dot-red.svg" width="16" height="16" alt="">TEXAS</span></span>
+            <span class="body"><span class="title">Fort Worth Alliance</span><span class="desc">Advanced training in Fort Worth's cargo and logistics hub. Commercial multi-engine focus.</span></span>
+          </a>
+          <a class="location-card reveal-up" href="#" style="--d:300ms">
+            <span class="map"><img src="assets/map-melbourne.png" alt="" style="height:100%;left:-19.61%;top:0;width:172.29%"></span>
+            <span class="card-head-row"><span class="icao">KMLB</span><span class="chip"><img src="assets/dot-yellow.svg" width="16" height="16" alt="">FLORIDA</span></span>
+            <span class="body"><span class="title">Melbourne Regional</span><span class="desc">Year-round flying weather with ocean training corridors and regional flight test programs.</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admissions -->
+    <section class="section admissions" id="admissions">
+      <div class="wrap">
+        <div class="section-header">
+          <p class="eyebrow"><span class="bullet bullet-red"></span>Enrolment Sequence</p>
+          <h2 class="display-lg scroll-words">Four steps to your first day.</h2>
+        </div>
+        <ol class="steps-row">
+          <li class="step-card reveal-up" style="--d:0ms">
+            <span class="step-number">01</span>
+            <div class="step-body">
+              <span class="step-illustration"><img src="assets/step-1.png" alt=""></span>
+              <h3 class="h6">Request Info</h3>
+              <p>Speak with a dedicated admissions advisor about your airline career goals and pathway criteria.</p>
+            </div>
+          </li>
+          <li class="step-card reveal-up" style="--d:100ms">
+            <span class="step-number">02</span>
+            <div class="step-body">
+              <span class="step-illustration"><img src="assets/step-2.png" alt=""></span>
+              <h3 class="h6">Visit &amp; Discover</h3>
+              <p>Walk our active flight line, sit in our standardized cockpits, and tour the ground school halls.</p>
+            </div>
+          </li>
+          <li class="step-card reveal-up" style="--d:200ms">
+            <span class="step-number">03</span>
+            <div class="step-body">
+              <span class="step-illustration"><img src="assets/step-3.png" alt=""></span>
+              <h3 class="h6">Apply Online</h3>
+              <p>Submit your pilot training registration along with your FAA medical class certificate.</p>
+            </div>
+          </li>
+          <li class="step-card reveal-up" style="--d:300ms">
+            <span class="step-number">04</span>
+            <div class="step-body">
+              <span class="step-illustration"><img src="assets/step-4.png" alt=""></span>
+              <h3 class="h6">Secure Class Date</h3>
+              <p>Finalize financial aid paths and reserve your designated class cohort slot.</p>
+            </div>
+          </li>
+        </ol>
+        <div class="btn-row center reveal-up">
+          <a class="btn btn-primary" href="#">Apply Now for Next Cohort <span class="arrow" aria-hidden="true"></span></a>
+          <a class="btn btn-outline" href="#">Request Step-by-Step Guide <span class="arrow" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Airline DNA -->
+    <section class="section dna" id="about">
+      <div class="wrap dna-split">
+        <figure class="dna-image reveal-up"><img src="assets/airline-dna.png" alt="Pilots reviewing a flight plan on the wing of a regional jet"></figure>
+        <div class="dna-content">
+          <div class="dna-text reveal-up">
+            <p class="eyebrow"><span class="bullet bullet-red"></span>Syllabus Excellence</p>
+            <h2 class="h3">Training with airline DNA.</h2>
+            <p class="lead">Our structured syllabus is directly aligned with FAA air carrier requirements. Multi-crew cooperation and strict procedural checklists from lesson one significantly reduce transition training time at regional and major carriers.</p>
+          </div>
+          <ul class="checklist">
+            <li class="reveal-up" style="--d:0ms"><img src="assets/check.svg" width="20" height="20" alt="">SOP-based multi-engine training from private pilot lessons</li>
+            <li class="reveal-up" style="--d:80ms"><img src="assets/check.svg" width="20" height="20" alt="">Crew Resource Management built into the checkride metrics</li>
+            <li class="reveal-up" style="--d:160ms"><img src="assets/check.svg" width="20" height="20" alt="">Jet transition bridge programs with glass simulator hours</li>
+            <li class="reveal-up" style="--d:240ms"><img src="assets/check.svg" width="20" height="20" alt="">Mentorship led by retired legacy airline captains</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section class="section news" id="news">
+      <div class="wrap">
+        <div class="news-header">
+          <div class="news-title">
+            <p class="eyebrow"><span class="bullet bullet-red"></span>Latest Updates</p>
+            <h2 class="display-lg scroll-words">Announcements &amp; aviation insight</h2>
+          </div>
+          <a class="btn btn-primary" href="#">View All News <span class="arrow" aria-hidden="true"></span></a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card reveal-up" style="--d:0ms">
+            <a href="#" class="news-link">
+              <span class="news-media"><img src="assets/news-1.jpg" alt="Training aircraft on the ramp at sunset"></span>
+              <span class="meta"><time datetime="2026-02-12">FEB 12, 2026</time><span class="tag">Expansion</span></span>
+              <h3 class="h6">US Aviation Academy expands to Florida with advanced Melbourne base</h3>
+              <p>A new southeast hub offers advanced flight training tracks directly on the coast to meet growing airline demand.</p>
+              <span class="read-more">Read Article <span class="arrow" aria-hidden="true"></span></span>
+            </a>
+          </article>
+          <article class="news-card reveal-up" style="--d:120ms">
+            <a href="#" class="news-link">
+              <span class="news-media"><img src="assets/news-2.jpg" alt="Student pilot flying above the clouds in a glass cockpit"></span>
+              <span class="meta"><time datetime="2026-01-24">JAN 24, 2026</time><span class="tag">Academics</span></span>
+              <h3 class="h6">Texas State University BAAS pathway officially opens registrations</h3>
+              <p>Degree-seeking pilots can now transfer FAA pilot certificates for up to 45 college credits.</p>
+              <span class="read-more">Read Article <span class="arrow" aria-hidden="true"></span></span>
+            </a>
+          </article>
+          <article class="news-card reveal-up" style="--d:240ms">
+            <a href="#" class="news-link">
+              <span class="news-media"><img src="assets/news-3.png" alt="Airliner wing above a sea of clouds at dusk"></span>
+              <span class="meta"><time datetime="2025-12-02">DEC 02, 2025</time><span class="tag">Events</span></span>
+              <h3 class="h6">US Aviation Academy schedules major fleet presence at Oshkosh 2026</h3>
+              <p>Join our executive crew and chief flight instructors at EAA AirVenture for pilot panels and recruiting.</p>
+              <span class="read-more">Read Article <span class="arrow" aria-hidden="true"></span></span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pre-footer CTA -->
+    <section class="cta" id="cta">
+      <div class="cta-visual" aria-label="Training aircraft — move across the image to reveal it in flight">
+        <img class="cta-base" src="assets/cta-plane-1.png" alt="Cessna training aircraft in a hangar">
+        <div class="cta-window">
+          <img class="cta-reveal" src="assets/cta-plane-2.png" alt="" aria-hidden="true">
+        </div>
+        <img class="cta-divider left" src="assets/cta-divider-1.svg" width="2" height="347" alt="" aria-hidden="true">
+        <img class="cta-divider right" src="assets/cta-divider-2.svg" width="2" height="348" alt="" aria-hidden="true">
+      </div>
+      <div class="cta-content wrap">
+        <p class="eyebrow eyebrow-yellow reveal-up"><span class="bullet"></span>Discovery Flight</p>
+        <h2 class="display-xl scroll-words on-dark">Your first flight is the best answer.</h2>
+        <p class="cta-lead reveal-up">Get on the schedule for an introductory discovery flight. Sit in the left seat, put your hands on the yoke, and see what professional aviation is all about.</p>
+        <div class="btn-row center reveal-up">
+          <a class="btn btn-light" href="#">Book Discovery Flight <span class="arrow" aria-hidden="true"></span></a>
+          <a class="btn btn-outline-dark" href="#">Request Course Brochure <span class="arrow" aria-hidden="true"></span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/logo-reversed.svg" width="132" height="48" alt="US Aviation Academy">
+          <p>US Aviation Academy trains top-tier professional pilots, airframe &amp; powerplant technicians, and dispatchers for the world's leading commercial airlines.</p>
+          <p class="contact">Denton, TX · <a href="tel:+19402976419">(940) 297-6419</a> · <a href="mailto:info@usaviationacademy.edu">info@usaviationacademy.edu</a></p>
+        </div>
+        <div class="footer-columns">
+          <nav aria-label="Academics"><h4>Academics</h4><a href="#">Career Pilot Program</a><a href="#">Aviation Maintenance</a><a href="#">Aircraft Dispatcher</a><a href="#">Flight Instructor</a><a href="#">Degree Pathways</a></nav>
+          <nav aria-label="Admissions"><h4>Admissions</h4><a href="#">How to Apply</a><a href="#">Requirements</a><a href="#">Tuition &amp; Costs</a><a href="#">Financial Aid</a><a href="#">VA Benefits</a><a href="#">Discovery Flight</a></nav>
+          <nav aria-label="Locations"><h4>Locations</h4><a href="#">Denton, TX</a><a href="#">Austin, TX</a><a href="#">Fort Worth, TX</a><a href="#">Melbourne, FL</a><a href="#">Atlanta, GA</a></nav>
+          <nav aria-label="Campus Life"><h4>Campus Life</h4><a href="#">Student Housing</a><a href="#">Fleet &amp; Facilities</a><a href="#">Student Stories</a><a href="#">Events</a><a href="#">News</a></nav>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <p class="accreditation">Accreditation Statement: US Aviation Academy is an FAA Part 141 Flight School and holds authorization for airframe &amp; powerplant training under FAA Part 147. Program partnerships with major airlines and collegiate institutions are governed by respective compliance frameworks.</p>
+        <div class="footer-bottom-row">
+          <p>© 2026 US Aviation Academy. All rights reserved.</p>
+          <div class="bottom-right">
+            <nav class="legal-links" aria-label="Legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Non-Discrimination Policy</a></nav>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook"><img src="assets/social-facebook.svg" width="16" height="16" alt=""></a>
+              <a href="#" aria-label="Instagram"><img src="assets/social-instagram.svg" width="16" height="16" alt=""></a>
+              <a href="#" aria-label="X"><img src="assets/social-x.svg" width="16" height="16" alt=""></a>
+              <a href="#" aria-label="YouTube"><img src="assets/social-youtube.svg" width="17" height="17" alt=""></a>
+              <a href="#" aria-label="LinkedIn"><img src="assets/social-linkedin.svg" width="16" height="16" alt=""></a>
+              <a href="#" aria-label="TikTok"><img src="assets/social-tiktok.svg" width="16" height="16" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
