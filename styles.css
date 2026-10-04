@@ -293,16 +293,16 @@ html.lenis, html.lenis body { height: auto; }
 }
 .hero-banner img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 /* Image: scale 1.2 → 1 on load; then drifts at 90% scroll speed */
-.banner-photo {
+.hero-banner .banner-photo { /* beats `.hero-banner img` so the parallax overscan applies */
   top: -6%; height: 112%;
   translate: 0 var(--parallax, 0px);
   scale: 1.2; transition: scale 1200ms var(--ease-image);
   will-change: transform;
 }
-.is-loaded .banner-photo { scale: 1; }
+.is-loaded .hero-banner .banner-photo { scale: 1; }
 
 .glass-card {
-  position: absolute; left: 24px; bottom: 24px;
+  position: absolute; left: 32px; bottom: 24px;
   display: flex; flex-direction: column; gap: 16px; padding: 24px;
   background: rgba(22, 29, 69, 0.95); border: 1px solid rgba(225, 227, 236, 0.25); border-radius: 16px;
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
@@ -600,10 +600,10 @@ html.lenis, html.lenis body { height: auto; }
 .phase-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease-appear), scale 1200ms var(--ease-image); will-change: transform; }
 .phase-card::before { /* top shade: black 50% → clear at half height */
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 50%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
 }
 .phase-glow { /* blurred 20% black ellipse behind the header row (Figma Ellipse 4/5) */
-  position: absolute; z-index: 1; top: -190px; left: -190px; width: calc(100% + 380px); height: 658px; max-width: none; pointer-events: none;
+  position: absolute; z-index: 1; top: -230px; left: -190px; width: calc(100% + 380px); height: 658px; max-width: none; pointer-events: none;
 }
 .phase-top { position: absolute; z-index: 2; top: 0; left: 0; right: 0; display: flex; align-items: center; gap: 20px; padding: 12px 24px 0; }
 .phase-top::after { content: ""; position: absolute; left: 24px; right: 24px; bottom: 0; height: 1px; background: var(--white); }
@@ -613,7 +613,7 @@ html.lenis, html.lenis body { height: auto; }
 .phase-bottom {
   position: absolute; z-index: 2; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; gap: 12px;
   padding: 56px 24px 24px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));
   -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);
   -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 56px); mask-image: linear-gradient(180deg, transparent 0, #000 56px);
   /* At rest the panel sits lower by the hidden lines' height (--extra, set in main.js),
@@ -701,7 +701,7 @@ html.lenis, html.lenis body { height: auto; }
 .about-title-row { position: relative; }
 .page-hero h1 { color: var(--white); }
 .page-hero h1 .accent { color: var(--secondary); }
-.about-lead { position: absolute; right: 0; top: 104px; width: 360px; font-size: 18px; line-height: 26px; color: var(--text-muted); }
+.about-lead { position: absolute; right: 0; top: 57px; /* centred on the first two headline lines */ width: 360px; font-size: 18px; line-height: 26px; color: var(--text-muted); }
 .about-banner { height: 640px; border-radius: 32px; overflow: hidden; }
 .about-banner img { width: 100%; height: 100%; object-fit: cover; scale: 1.2; transition: scale 1200ms var(--ease-image); }
 .is-loaded .about-banner img { scale: 1; }
